@@ -1,0 +1,13 @@
+<div class="container">
+  <button class="btn btn-info mt-3 btn-lg nav-link" (click)="goBack()">
+    <i class="bi bi-arrow-return-left"></i>
+  </button>
+  <h1>{{ item.Title }}</h1>
+  <img
+    *ngIf="item.Poster !== 'N/A'"
+    [src]="item.Poster"
+    alt="{{ item.Title }}"
+  />
+  <p><strong>Year:</strong> {{ formatYear(item.Year) }}</p>
+  <p><strong>Type:</strong> {{ item.Type }}</p>
+</div>

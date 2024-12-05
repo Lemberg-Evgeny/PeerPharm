@@ -1,0 +1,68 @@
+<div class="grid">
+  <div *ngIf="error" class="alert alert-danger"> {{ error }} </div>
+
+  <div class="leftBlock g-col-3">
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let type of getUniqueTypes()">
+        <a class="nav-link" href="#" (click)="filterByType(type)"> {{ type }} ({{ type.length }}) </a>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-info btn-sm mt-2 nav-link" (click)="toggleView()">
+          <i class="bi bi-grid-3x3" *ngIf="!isGridView"></i>
+          <i class="bi bi-list-ul" *ngIf="isGridView"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="rightBlock g-col-9">
+    <div class="search-bar d-flex">
+      <input
+        type="search"
+        class="form-control col"
+        [(ngModel)]="searchText"
+        placeholder="Search by name or year"
+      />
+
+      <button class="btn btn-secondary btn-sm nav-link" (click)="clearSearch()">
+        <i class="bi bi-x-square"></i>
+      </button>
+      <button class="btn btn-primary btn-sm nav-link" (click)="loadData()">
+        <i class="bi bi-arrow-clockwise"></i>
+      </button>
+      <button class="btn btn-info btn-sm nav-link" (click)="toggleSort()">
+        <i class="bi bi-sort-alpha-down" *ngIf="sort === 'asc'"></i>
+        <i class="bi bi-sort-alpha-up-alt" *ngIf="sort === 'desc'"></i>
+      </button>
+    </div>
+
+    <div [ngClass]="{ 'grid-view': isGridView, 'list-view': !isGridView }">
+      <div *ngFor="let item of sortedData()" class="items d-flex p-2">
+        <img
+          *ngIf="item.Poster !== 'N/A'"
+          [src]="item.Poster"
+          alt="{{ item.Title }}"
+          class="img-thumbnail"
+          [routerLink]="['/item', item.imdbID]"
+        />
+        <section class="p-2">
+          <h3
+            class="itemName"
+            *ngIf="!editingItem || editingItem.imdbID !== item.imdbID"
+            (click)="editName(item)"
+          >
+            {{ item.Title }}
+          </h3>
+          <input
+            *ngIf="editingItem && editingItem.imdbID === item.imdbID"
+            type="text"
+            [(ngModel)]="editingItem.Title"
+            (blur)="updateItem(item)"
+          />
+
+          <p>{{ formatYear(item.Year) }}</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

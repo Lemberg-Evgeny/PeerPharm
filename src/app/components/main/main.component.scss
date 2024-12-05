@@ -1,0 +1,71 @@
+.leftBlock {
+  padding: 2em;
+  background-color: rgb(28, 38, 47);
+}
+
+.rightBlock {
+  padding-top: 2em;
+}
+
+.img-thumbnail {
+  box-shadow: 2px 2px 15px rgb(0, 0, 0);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 15px rgb(76, 149, 159);
+    color: rgb(99, 177, 187);
+  }
+}
+
+.itemName {
+  cursor: pointer;
+  &:hover {
+    background: none;
+    text-shadow: 0 0 5px rgb(76, 149, 159);
+    color: rgb(99, 177, 187);
+  }
+}
+
+.nav-link {
+  color: rgb(76, 149, 159);
+  margin: 0 1em;
+  &:hover {
+    background: none;
+    text-shadow: 0 0 5px rgb(76, 149, 159);
+    color: rgb(99, 177, 187);
+  }
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2vw;
+
+  .items {
+    h3 {
+      font-size: 1.3vw;
+    }
+
+    p {
+      font-size: 0.8vw;
+    }
+  }
+}
+
+.list-view {
+  .list-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+
+    div {
+      flex: 1;
+    }
+  }
+}
+
+img {
+  max-width: 10vw;
+  height: auto;
+  margin-bottom: 10px;
+}
